@@ -1,0 +1,32 @@
+Crear usuarios con Tinker
+->php artisan tinker
+
+$u = new App\User;\
+... $u->name = "Administrador";\
+... $u->email = "admin@email.com";\
+... $u->password = bcrypt("123456");\
+... $u->save();
+
+$u = new App\User;\
+... $u->name = "Estudiante";\
+... $u->email = "estudiante@email.com";\
+... $u->password = bcrypt("123456");\
+...  $u->save();
+
+$u = new App\User;\
+... $u->name = "Moderador";\
+... $u->email = "moderador@email.com";\
+... $u->password = bcrypt("123456");\
+...  $u->save();
+
+$r = new App\Role;\
+... $r->name = "admin";\
+... $r->display_name = "Administrador del sitio";\
+... $r->descripcion = "Este role tiene los permisos para administrar el sitio entero";\
+... $r->save();
+
+$r = new App\Role;\
+... $r->name ="estudiante";\
+... $r->display_name = "Estudiante del sitio";\
+... $r->descripcion = "Este role tiene los permisos de estudiante";\
+... $r->save();
