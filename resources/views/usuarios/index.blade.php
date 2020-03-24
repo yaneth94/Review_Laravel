@@ -20,7 +20,7 @@
 					<a href="{{ route('usuarios.show',$usuario->id) }}">{{ $usuario->name }}</a>
 				</td>
                 <td>{{ $usuario->email }}</td>
-                <td>{{ $usuario->role }}</td>
+                <td>{{ $usuario->role->display_name }}</td>
 				<td>
 					<a  class="btn btn-info btn-xs" href="{{ route('usuarios.edit',$usuario->id) }}">Editar</a>
 					<form method="POST" style="display:inline" action="{{ route('usuarios.destroy',$usuario->id) }}">

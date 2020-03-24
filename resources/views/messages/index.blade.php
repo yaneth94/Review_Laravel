@@ -1,8 +1,9 @@
 @extends('layout')
 
 @section('contenido')
-	<h1>Todos los mensajes</h1>
+
 	<div class="container">
+        <h1>Todos los mensajes</h1>
 		<table class="table">
 		<thead>
 			<tr>
@@ -26,7 +27,7 @@
 						{!! csrf_field() !!}
 						{!! method_field('DELETE') !!}
 						<button  class="btn btn-danger btn-xs" type="submit">Eliminar</button>
-						
+
 					</form>
 				</td>
 			</tr>

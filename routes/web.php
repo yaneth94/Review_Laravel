@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Route;
     'role' => 'moderador'
 ]);*/
 
+Route::get('roles', function () {
+    return \App\Role::with('user')->get();
+});
+
 Route::get('/',['as'=>'home', function (){
     return view('home');
 }]);
