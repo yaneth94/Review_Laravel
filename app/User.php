@@ -37,8 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasRoles($role)
+    public function hasRoles(array $roles)
     {
-        return $this->role === $role;
+        foreach($roles as $role){
+            if($this->role === $role)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

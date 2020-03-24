@@ -34,7 +34,7 @@
 	             <li class="nav-item {{ activeMenu('mensajes') }}">
 	            	<a class="nav-link" href="{{ route('messages.index') }}">Mensajes</a>
                 </li>
-                @if(auth()->user()->hasRoles('admin'))
+                @if(auth()->user()->hasRoles(['admin']))
                     <li class="nav-item {{ activeMenu('usuarios') }}">
                         <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
                     </li>

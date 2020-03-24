@@ -13,9 +13,11 @@ class CheckRoles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next)
     {
-        if(auth()->user()->hasRoles($role))
+        $roles = array_slice(func_get_args(),2);
+        //dd($roles);
+        if(auth()->user()->hasRoles($roles))
         {
             return $next($request);
         }
