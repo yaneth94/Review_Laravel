@@ -34,7 +34,7 @@
 	             <li class="nav-item {{ activeMenu('mensajes') }}">
 	            	<a class="nav-link" href="{{ route('messages.index') }}">Mensajes</a>
                 </li>
-                @if(auth()->user()->hasRoles(['admin']))
+                @if(auth()->user()->hasRoles(['admin','moderador']))
                     <li class="nav-item {{ activeMenu('usuarios') }}">
                         <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
                     </li>
@@ -46,11 +46,18 @@
             @guest
             <li class="nav-item {{ activeMenu('login') }}"><a  class="nav-link" href="{{ route('login') }}"> Login</a></li>
             @else
-            <li><a  class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Cerrar sesión {{ auth()->user()->name }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf
-            </form></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ auth()->user()->name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item"  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf
+                    </form>
+                <a class="dropdown-item" href="/usuarios/{{ auth()->id()}}/edit">Ver mi Perfil</a>
+
+                </div>
+              </li>
             @endguest
           </ul>
 		</nav>

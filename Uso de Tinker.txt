@@ -25,6 +25,13 @@ $r = new App\Role;\
 ... $r->descripcion = "Este role tiene los permisos para administrar el sitio entero";\
 ... $r->save();
 
+
+$r = new App\Role;\
+... $r->name = "mod";\
+... $r->display_name = "Moderador de Comentarios en el sistema";\
+... $r->descripcion ="Se encarga de revisar los comentarios del sistema";\
+... $r->save();
+
 $r = new App\Role;\
 ... $r->name ="estudiante";\
 ... $r->display_name = "Estudiante del sitio";\

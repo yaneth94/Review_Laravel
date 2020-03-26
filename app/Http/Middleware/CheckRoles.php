@@ -15,8 +15,9 @@ class CheckRoles
      */
     public function handle($request, Closure $next)
     {
-        $roles = array_slice(func_get_args(),2);
 
+        $roles = array_slice(func_get_args(),2);
+        //dd($roles);
         if(auth()->user()->hasRoles($roles))
         {
             return $next($request);

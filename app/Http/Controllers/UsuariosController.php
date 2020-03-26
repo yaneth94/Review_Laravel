@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,8 @@ class UsuariosController extends Controller
 {
     function __construct()
     {
-        $this->middleware(['auth','roles:admin']);
+        $this->middleware('auth');
+        $this->middleware('roles:admin',['except' => ['edit','update']]);
     }
 
     public function index()
@@ -34,12 +36,17 @@ class UsuariosController extends Controller
 
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $this->authorize('edit',$usuario);
+        return view('usuarios.edit',compact('usuario'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $this->authorize('update',$usuario);
+        $usuario->update($request->all());
+        return back()->with('info','Usuario Actualizado Correctamente');
     }
 
     public function destroy($id)
