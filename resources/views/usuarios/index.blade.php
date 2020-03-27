@@ -21,9 +21,7 @@
 				</td>
                 <td>{{ $usuario->email }}</td>
                 <td>
-                    @foreach ($usuario->roles as $rol)
-                        <li>{{ $rol->display_name }}</li>
-                    @endforeach
+                    {{ $usuario->roles->pluck('display_name')->implode(' - ') }}
                 </td>
 				<td>
 					<a  class="btn btn-info btn-xs" href="{{ route('usuarios.edit',$usuario->id) }}">Editar</a>

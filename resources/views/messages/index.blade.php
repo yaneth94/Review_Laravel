@@ -16,11 +16,18 @@
 		<tbody>
 			@foreach($messages as $message)
 			<tr>
-				<td>
-					<a href="{{ route('messages.show',$message->id) }}">{{ $message->nombre }}</a>
-				</td>
-				<td>{{ $message->email }}</td>
-				<td>{{ $message->mensaje }}</td>
+                @if ( $message->user_id)
+                    <td>
+                        <a href="{{ route('usuarios.show', $message->user_id)}}">
+                            {{ $message->user->name }}
+                        </a>
+                    </td>
+                    <td>{{ $message->user->email }}</td>
+                @else
+                    <td>{{ $message->nombre }}</td>
+                    <td>{{ $message->email }}</td>
+                @endif
+				<td><a href="{{ route('messages.show',$message->id) }}">{{ $message->mensaje }}</a></td>
 				<td>
 					<a  class="btn btn-info btn-xs" href="{{ route('messages.edit',$message->id) }}">Editar</a>
 					<form method="POST" style="display:inline" action="{{ route('messages.destroy',$message->id) }}">
