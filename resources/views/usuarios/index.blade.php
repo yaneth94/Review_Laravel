@@ -4,6 +4,7 @@
 
 	<div class="container">
         <h1>Todos los Usuarios</h1>
+        <a class="btn btn-primary pull-right my-3" href="{{ route('usuarios.create') }}">Crear Nuevo Usuario</a>
 		<table class="table">
 		<thead>
 			<tr>
