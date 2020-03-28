@@ -9,7 +9,8 @@
 			<tr>
 				<th>Nombre</th>
 				<th>Correo</th>
-				<th>Mensaje</th>
+                <th>Mensaje</th>
+                <th>Notas</th>
 				<th>Acciones</th>
 			</tr>
 		</thead>
@@ -27,7 +28,8 @@
                     <td>{{ $message->nombre }}</td>
                     <td>{{ $message->email }}</td>
                 @endif
-				<td><a href="{{ route('messages.show',$message->id) }}">{{ $message->mensaje }}</a></td>
+                <td><a href="{{ route('messages.show',$message->id) }}">{{ $message->mensaje }}</a></td>
+                <td>{{ $message->note->body }}</td>
 				<td>
 					<a  class="btn btn-info btn-xs" href="{{ route('messages.edit',$message->id) }}">Editar</a>
 					<form method="POST" style="display:inline" action="{{ route('messages.destroy',$message->id) }}">

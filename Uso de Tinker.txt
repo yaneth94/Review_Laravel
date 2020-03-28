@@ -37,3 +37,20 @@ $r = new App\Role;\
  $r->display_name = "Estudiante del sitio";\
  $r->descripcion = "Este role tiene los permisos de estudiante";\
  $r->save();
+
+
+//Para las relaciones polimorficas
+$message = App\Message::first();
+$message->note()->create(['body' => 'Nota del Mensaje 1']);
+
+$message = App\Message::find(2);
+$message->note()->create(['body' => 'Nota del Mensaje 2']);
+
+$u = App\User::find(1);
+$u->note()->create(['body' => 'Nota del Usuario 1']);
+
+$u = App\User::find(2);
+$u->note()->create(['body' => 'Nota del Usuario 2']);
+
+$u = App\User::find(3);
+$u->note()->create(['body' => 'Nota del Usuario 3']);

@@ -12,4 +12,8 @@ class Message extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function note()
+    {
+        return $this->morphOne(Note::class,'notable');
+    }
 }
