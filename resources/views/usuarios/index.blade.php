@@ -12,6 +12,7 @@
                 <th>Correo</th>
                 <th>Rol</th>
                 <th>Notas</th>
+                <th>Tags</th>
                 <th>Acciones</th>
 			</tr>
 		</thead>
@@ -26,6 +27,7 @@
                     {{ $usuario->roles->pluck('display_name')->implode(' - ') }}
                 </td>
                 <td>{{ $usuario->note->body ?? 'No hay Nota asignada' }}</td>
+                <td>{{ $usuario->tags->pluck('name')->implode(', ')}}</td>
 				<td>
 					<a  class="btn btn-info btn-xs" href="{{ route('usuarios.edit',$usuario->id) }}">Editar</a>
 					<form method="POST" style="display:inline" action="{{ route('usuarios.destroy',$usuario->id) }}">

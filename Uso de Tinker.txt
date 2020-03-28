@@ -54,3 +54,18 @@ $u->note()->create(['body' => 'Nota del Usuario 2']);
 
 $u = App\User::find(3);
 $u->note()->create(['body' => 'Nota del Usuario 3']);
+
+//Para relaciones polimorficas de muchos a muchos
+$message = App\Message::first();
+$message->tags()->create(['name' => 'Importante']);
+
+$tag = App\Tag::create(['name' => 'No importante']);
+$message->tags()->save($tag);
+
+$u = App\User::find(1);
+$tag = App\Tag::find(1);
+$u->tags()->save($tag);
+
+*para quitar la relacion
+$u->tags()->detach(1);
+$u->fresh()->tags;
