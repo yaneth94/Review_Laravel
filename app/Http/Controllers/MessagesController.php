@@ -6,6 +6,7 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Message;
+use Illuminate\Support\Facades\Mail;
 
 class MessagesController extends Controller
 {
@@ -34,6 +35,9 @@ class MessagesController extends Controller
         if(auth()->check()){
             auth()->user()->messages()->save($message);
         }
+        Mail::send('emails.contact',['msg' => $message],function($m) use ($message){
+            $m->to($message->email, $message->nombre)->subject('Tu mensaje fue recibido');
+        });
         //para crear guarda el nuevo mensaje y lo asigna a la relacion
         //auth()->user()->messages()->create($request->all());
 

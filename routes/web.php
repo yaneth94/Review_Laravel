@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-DB::listen(function($query){
+/*DB::listen(function($query){
     echo "<pre>{$query->sql}</pre>";
-});
+});*/
 
 Route::get('roles', function () {
     return \App\Role::with('user')->get();
