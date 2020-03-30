@@ -1,5 +1,5 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    @unless (Auth::check() or $message->user_id)
+    @if ($showFields)
         <label for="nombre">
             Nombre
             <input class="form-control"  type="text" name="nombre" value="{{ $message->nombre ?? old('nombre') }}">

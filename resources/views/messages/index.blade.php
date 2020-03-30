@@ -30,7 +30,7 @@
                     <td>{{ $message->email }}</td>
                 @endif
                 <td><a href="{{ route('messages.show',$message->id) }}">{{ $message->mensaje }}</a></td>
-                <td>{{ $message->note->body }}</td>
+                <td>{{ $message->note ? $message->note->body : '' }}</td>
                 <td>{{ $message->tags->pluck('name')->implode(', ')}}</td>
 				<td>
 					<a  class="btn btn-info btn-xs" href="{{ route('messages.edit',$message->id) }}">Editar</a>

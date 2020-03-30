@@ -18,7 +18,7 @@ class UsuariosController extends Controller
 
     public function index()
     {
-        $usuarios = User::all();
+        $usuarios = User::with(['roles','note','tags'])->get();;
         return view('usuarios.index',compact('usuarios'));
     }
 

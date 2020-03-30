@@ -9,7 +9,10 @@
     <h1>Contactos</h1>
     <h2>Escribeme</h2>
     <form action="{{ route('messages.store') }}" method="POST" >
-        @include('messages.form',['message' => new App\Message])
+        @include('messages.form',[
+            'showFields' => auth()->guest(),
+            'message' => new App\Message
+            ])
     </form>
 <hr>
 @endif

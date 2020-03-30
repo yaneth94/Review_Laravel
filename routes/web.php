@@ -1,13 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-/*App\User::create([
-    'name' => 'Dayana',
-    'email' => 'dayana@gmail.com',
-    'password' => bcrypt('12345678'),
-    'role' => 'moderador'
-]);*/
+DB::listen(function($query){
+    echo "<pre>{$query->sql}</pre>";
+});
 
 Route::get('roles', function () {
     return \App\Role::with('user')->get();
