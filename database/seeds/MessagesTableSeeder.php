@@ -1,6 +1,7 @@
 <?php
 
 use App\Message;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class MessagesTableSeeder extends Seeder
@@ -13,11 +14,12 @@ class MessagesTableSeeder extends Seeder
     public function run()
     {
         Message::truncate();
-        for ($i=1; $i < 11; $i++) {
+        for ($i=1; $i < 101; $i++) {
             Message::create([
                 'nombre' => "Usuario {$i}",
                 'email' => "usuario{$i}@email.com",
-                'mensaje' => "Este es el mensaje del usuario numero {$i}"
+                'mensaje' => "Este es el mensaje del usuario numero {$i}",
+                'created_at' => Carbon::now()->subDays(100)->addDays($i)
             ]);
         }
     }
