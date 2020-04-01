@@ -7,7 +7,6 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Message;
-use Illuminate\Support\Facades\Mail;
 
 class MessagesController extends Controller
 {

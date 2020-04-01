@@ -12,7 +12,7 @@ class SendAutoResponder
 
     public function handle(MessageWasReceived $event)
     {
-        var_dump('Enviar autorespondedor');
+        //var_dump('Enviar autorespondedor');
         $message = $event->message;
         Mail::send('emails.contact',['msg' => $message],function($m) use ($message){
             $m->to($message->email, $message->nombre)->subject('Tu mensaje fue recibido');
