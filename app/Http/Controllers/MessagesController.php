@@ -18,7 +18,6 @@ class MessagesController extends Controller
     public function index()
     {
        $key = "messages.page." . request('page',1);
-
        $messages = Cache::rememberForever($key, function () {
            return Message::with(['user','note','tags'])
                         ->orderBy('created_at', request('sorted','DESC'))

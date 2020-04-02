@@ -88,3 +88,17 @@ Cache::has('key');
 Cache::forget('key');
 **Eliminar todos las keys de Cache
 Cache::flush();
+
+//Manejo de Redis
+se entra a su linea de comando con ** redis-cli
+**Para crear una llave con valor
+set key valor
+**Para consultar la llave con valor
+get key
+** Para saber si existe la llave devuelve 1 o 0
+exists key
+** Para eliminar una llave que ya existe
+del key
+** listar las key
+keys *
+
