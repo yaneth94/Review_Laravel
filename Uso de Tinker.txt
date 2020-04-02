@@ -88,9 +88,14 @@ Cache::has('key');
 Cache::forget('key');
 **Eliminar todos las keys de Cache
 Cache::flush();
+**Ver los tags
+Cache::tags('messages')->get('messages.page.1')->all()
+**Eliminar con tags
+Cache::tags('messages')->flush()
 
 //Manejo de Redis
-se entra a su linea de comando con ** redis-cli
+se entra a su linea de comando con ** redis-cli --Laravel lo guarda en el index 1
+**redis-cli -n 1 no el anterior
 **Para crear una llave con valor
 set key valor
 **Para consultar la llave con valor

@@ -376,3 +376,20 @@
 #60 /home/vagrant/code/blog/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle()
 #61 {main}
 "} 
+[2020-04-02 21:02:54] local.ERROR: Command "config" is not defined.
+
+Did you mean one of these?
+    config:cache
+    config:clear {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"config\" is not defined.
+
+Did you mean one of these?
+    config:cache
+    config:clear at /home/vagrant/code/blog/vendor/symfony/console/Application.php:644)
+[stacktrace]
+#0 /home/vagrant/code/blog/vendor/symfony/console/Application.php(228): Symfony\\Component\\Console\\Application->find()
+#1 /home/vagrant/code/blog/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#2 /home/vagrant/code/blog/vendor/laravel/framework/src/Illuminate/Console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#3 /home/vagrant/code/blog/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 /home/vagrant/code/blog/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 

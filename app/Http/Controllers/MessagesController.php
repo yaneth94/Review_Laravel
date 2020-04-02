@@ -18,7 +18,7 @@ class MessagesController extends Controller
     public function index()
     {
        $key = "messages.page." . request('page',1);
-       $messages = Cache::rememberForever($key, function () {
+       $messages = Cache::tags('messages')->rememberForever($key, function () {
            return Message::with(['user','note','tags'])
                         ->orderBy('created_at', request('sorted','DESC'))
                         ->paginate(10);
@@ -55,7 +55,7 @@ class MessagesController extends Controller
             auth()->user()->messages()->save($message);
         }
 
-        Cache::flush();
+        Cache::tags('messages')->flush();
         //eventos
         event(new MessageWasReceived($message));
         //redireccionar
@@ -64,7 +64,7 @@ class MessagesController extends Controller
 
     public function show($id)
     {
-        $message = Cache::rememberForever("messages.{$id}", function () use ($id){
+        $message = Cache::tags('messages')->rememberForever("messages.{$id}", function () use ($id){
             return Message::findOrFail($id);
         });
         //$message = DB::table('messages')->where('id',$id)->first();
@@ -74,7 +74,7 @@ class MessagesController extends Controller
     public function edit($id)
     {
         //$message = DB::table('messages')->where('id',$id)->first();
-        $message = Cache::remember("messages.{$id}", 4000, function () use ($id){
+        $message = Cache::tags('messages')->remember("messages.{$id}", 4000, function () use ($id){
             return Message::findOrFail($id);
         });
         return view('messages.edit', compact('message'));
@@ -89,7 +89,7 @@ class MessagesController extends Controller
             "updated_at" => Carbon::now(),
         ]);*/
         Message::findOrFail($id)->update($request->all());
-        Cache::flush();
+        Cache::tags('messages')->flush();
         return redirect()->route('messages.index');
     }
 
@@ -97,7 +97,7 @@ class MessagesController extends Controller
     {
         //$message = DB::table('messages')->where('id',$id)->delete();
         Message::findOrFail($id)->delete();
-        Cache::flush(); //tags
+        Cache::tags('messages')->flush(); //tags
         return redirect()->route('messages.index');
     }
 }
