@@ -7,6 +7,7 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Message;
+use Illuminate\Support\Facades\Cache;
 
 class MessagesController extends Controller
 {
@@ -16,11 +17,27 @@ class MessagesController extends Controller
     }
     public function index()
     {
-       // $messages = DB::table('messages')->get();
-       //$messages = Message::with(['user','note','tags'])->simplePaginate(10);
-       $messages = Message::with(['user','note','tags'])
-                    ->orderBy('created_at', request('sorted','ASC'))
-                    ->paginate(10);
+       $key = "messages.page." . request('page',1);
+
+       $messages = Cache::rememberForever($key, function () {
+           return Message::with(['user','note','tags'])
+                        ->orderBy('created_at', request('sorted','DESC'))
+                        ->paginate(10);
+       });
+       /*if(Cache::has($key))
+       {
+           $messages = Cache::get($key);
+       }
+       else{
+           // $messages = DB::table('messages')->get();
+           //$messages = Message::with(['user','note','tags'])->simplePaginate(10);
+           $messages = Message::with(['user','note','tags'])
+                        ->orderBy('created_at', request('sorted','ASC'))
+                        ->paginate(10);
+
+            //Guardando en cache los resultados
+            Cache::put($key,$messages,5000);
+       }*/
 
         return view('messages.index',compact('messages'));
     }
@@ -38,6 +55,8 @@ class MessagesController extends Controller
         if(auth()->check()){
             auth()->user()->messages()->save($message);
         }
+
+        Cache::flush();
         //eventos
         event(new MessageWasReceived($message));
         //redireccionar
@@ -46,15 +65,19 @@ class MessagesController extends Controller
 
     public function show($id)
     {
+        $message = Cache::rememberForever("messages.{$id}", function () use ($id){
+            return Message::findOrFail($id);
+        });
         //$message = DB::table('messages')->where('id',$id)->first();
-        $message = Message::findOrFail($id);
         return view('messages.show', compact('message'));
     }
 
     public function edit($id)
     {
         //$message = DB::table('messages')->where('id',$id)->first();
-        $message = Message::findOrFail($id);
+        $message = Cache::remember("messages.{$id}", 4000, function () use ($id){
+            return Message::findOrFail($id);
+        });
         return view('messages.edit', compact('message'));
     }
 
@@ -66,14 +89,16 @@ class MessagesController extends Controller
             "mensaje" => $request->input('mensaje'),
             "updated_at" => Carbon::now(),
         ]);*/
-        $message = Message::findOrFail($id)->update($request->all());
+        Message::findOrFail($id)->update($request->all());
+        Cache::flush();
         return redirect()->route('messages.index');
     }
 
     public function destroy($id)
     {
         //$message = DB::table('messages')->where('id',$id)->delete();
-         $message = Message::findOrFail($id)->delete();
+        Message::findOrFail($id)->delete();
+        Cache::flush(); //tags
         return redirect()->route('messages.index');
     }
 }

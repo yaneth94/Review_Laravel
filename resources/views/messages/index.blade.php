@@ -43,7 +43,7 @@
 				</td>
 			</tr>
             @endforeach
-            {!! $messages->appends(request()->query())->links('pagination::default') !!}
+            {!! $messages->appends(request()->query())->links('pagination::bootstrap-4') !!}
 		</tbody>
 	</table>
 	</div>

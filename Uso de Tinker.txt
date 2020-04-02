@@ -76,3 +76,15 @@ $u->name = "Administrador";\
 $u->email = "admin@email.com";\
 $u->password = '123456';\
 $u->save();
+
+//Manejo de Cache
+**Esto es para meter datos
+Cache::put('key','valor',1000);
+**Esto es para consultar el datos
+Cache::get('key');
+**Metodo has para preguntar si existe una llave en el Cache
+Cache::has('key');
+**Quitar manualmente un valor del Cache
+Cache::forget('key');
+**Eliminar todos las keys de Cache
+Cache::flush();
