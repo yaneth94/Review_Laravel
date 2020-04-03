@@ -20,14 +20,14 @@
 			@foreach($usuarios as $usuario)
 			<tr>
 				<td>
-					<a href="{{ route('usuarios.show',$usuario->id) }}">{{ $usuario->name }}</a>
+					{!! $usuario->present()->link() !!}
 				</td>
                 <td>{{ $usuario->email }}</td>
                 <td>
-                    {{ $usuario->roles->pluck('display_name')->implode(' - ') }}
+                    {{$usuario->present()->roles() }}
                 </td>
-                <td>{{ $usuario->note->body ?? 'No hay Nota asignada' }}</td>
-                <td>{{ $usuario->tags->pluck('name')->implode(', ')}}</td>
+                <td>{{ $usuario->present()->notes() }}</td>
+                <td>{{ $usuario->present()->tags() }}</td>
 				<td>
 					<a  class="btn btn-info btn-xs" href="{{ route('usuarios.edit',$usuario->id) }}">Editar</a>
 					<form method="POST" style="display:inline" action="{{ route('usuarios.destroy',$usuario->id) }}">
