@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Message;
 
-class Messages
+class Messages implements MessagesInterfaces
 {
     public function getPaginate()
     {

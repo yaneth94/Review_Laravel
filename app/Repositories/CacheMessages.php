@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\Cache;
 
-class CacheMessages
+class CacheMessages implements MessagesInterfaces
 {
     protected $messages;
     public function __construct(Messages $messages)
