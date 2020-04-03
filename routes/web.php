@@ -1,10 +1,16 @@
 <?php
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Route;
 
 //Esto es para probar el funcionamiento de cache
 /*DB::listen(function($query){
     echo "<pre>{$query->sql}</pre>";
+});*/
+
+//esto es para probar el job
+/*Route::get('job', function(){
+    dispatch(new App\Jobs\SendEmail);
+    return "Listo!";
 });*/
 
 Route::get('roles', function () {

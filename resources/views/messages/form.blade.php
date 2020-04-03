@@ -19,4 +19,4 @@
 		{!! $errors->first('mensaje','<span class="error">:message</span') !!}
 	</label>
 	<br>
-    <input class="btn btn-primary" type="submit" value="{{  $btnText ?? 'Guardar' }}">
+    <input class="btn btn-primary" id="button-form" type="submit" value="{{  $btnText ?? 'Guardar' }}">
