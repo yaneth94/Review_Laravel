@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-/*Esto es para probar el funcionamiento de cache
-DB::listen(function($query){
+//Esto es para probar el funcionamiento de cache
+/*DB::listen(function($query){
     echo "<pre>{$query->sql}</pre>";
 });*/
 
