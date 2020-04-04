@@ -26,3 +26,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+import Echo from 'laravel-echo';
+import io from "socket.io-client";
+window.io = io
+// window.Pusher = require('pusher-js');
+ window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: 'http://blog.to:6001',
+    transports: ['websocket', 'polling', 'flashsocket'] // Fix CORS error!
+
+    //key: process.env.MIX_PUSHER_APP_KEY,
+    //cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    //forceTLS: true
+});

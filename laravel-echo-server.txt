@@ -1,0 +1,9 @@
+ laravel-echo-server init
+? Do you want to run this server in development mode? Yes
+? Which port would you like to serve from? 6001--> enter se da aqui
+? Which database would you like to use to store presence channel members? redis
+? Enter the host of your Laravel authentication server. 192.168.10.10
+? Will you be serving on http or https? http
+? Do you want to generate a client ID/Key for HTTP API? No
+? Do you want to setup cross domain access to the API? No
+? What do you want this config to be saved as? laravel-echo-server.json --> enter se da aqui
